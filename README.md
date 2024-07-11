@@ -1,6 +1,11 @@
 # Teste de conhecimentos PHP + Banco de dados
+
+![image](https://github.com/kimcen/PHP-CRUD/assets/52336601/22ed73be-153c-48e3-bf35-8ee68cf5a625)
+
+
 ##### Objetivo
 Criar um Crud simples, totalmente desenvolvido em PHP, sem a utilização de frameworks, onde será possível Criar/Editar/Excluir/Listar usuários. O sistema também deve possuir a possibilidade de vincular/desvincular várias cores ao usuário.
+
 
 ##### Estrutura de banco de dados
 A seguinte estrutura será utilizada para persistência dos dados, podendo ser alterada a qualquer momento para melhor funcionamento do sistema:
