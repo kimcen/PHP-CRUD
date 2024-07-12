@@ -1,5 +1,7 @@
 <link rel="stylesheet" type="text/css" href= '../style.css'>
-<?php include('../header.php'); 
+
+<?php 
+include('../header.php'); 
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -9,6 +11,7 @@ if (isset($_GET['id'])) {
     exit();
 }
 ?>
+
 <div class="main_content" style="justify-content: center; align-items: center;">
     <div class="inside_header">
         <h2 style="padding-bottom: 10px;">Update Color</h2>

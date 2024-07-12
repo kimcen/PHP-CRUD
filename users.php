@@ -7,6 +7,7 @@
     </div>
     <div class="message">
         <?php
+            // Prints the output message from CUD operations
             if(isset($_GET['message'])){
                 echo "<h6>".$_GET['message']."</h6>";
             }
@@ -26,7 +27,7 @@
             </thead>
             <tbody>
                 <?php 
-                // insert database values into table
+                // Reads database values into main table
                     foreach($users as $user) {
                         echo sprintf(
                                 '<tr>
@@ -45,6 +46,7 @@
     </div>
 </div>
 
+<!-- Pop up window -->
 <form action="pages/insert_user.php" method="POST">
     <div class="modal fade" id="add_user" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

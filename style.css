@@ -78,3 +78,8 @@ a {
     color: white;
     text-decoration: none; /* no underline */
   }
+
+#main_text {
+    padding-left: 15%;
+    padding-right: 15%;
+}

@@ -7,6 +7,7 @@
     </div>
     <div class="message" style="text-align: center;">
         <?php
+            // Prints the output message from CUD operations
             if(isset($_GET['message'])){
                 echo "<h6>".$_GET['message']."</h6>";
             }
@@ -41,6 +42,7 @@
     </div>
 </div>
 
+<!-- Pop up window -->
 <form action="pages/insert_color.php" method="POST">
     <div class="modal fade" id="add_color" tabindex="-1" role="dialog" aria-labelledby="colorModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

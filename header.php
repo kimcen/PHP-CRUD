@@ -28,7 +28,7 @@
 <body style="height: 3000px; background-color: #f0eee8">
     <div>
         <div class="header">
-            <h1 id="main_title">My Database</h1>
+            <h1 id="main_title"><a href=<?php echo __DIR__ . "/index.php"?>>My Database</a></h1>
         </div>
         
         <div class="sidebar">
