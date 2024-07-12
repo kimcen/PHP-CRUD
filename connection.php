@@ -80,12 +80,18 @@ class Connection {
         $stmt->bindValue(':email', $email, SQLITE3_TEXT);
 
         if ($stmt->execute()) {
-            // gets user id. Will brake with asynchronous database manipulation (which this isn't built for)
+            // gets user id. Will break with asynchronous database manipulation (which this isn't built for)
             $user_id = $this->connection->lastInsertId();
-            $color_ids = explode(",", trim($color_ids));
+            $color_ids = array_map('trim', explode(',', $color_ids));
+
+            $stmt = $this->connection->prepare('DELETE FROM user_colors WHERE user_id=:user_id');
+            $stmt->bindValue(':user_id', $user_id, SQLITE3_INTEGER);
+            $stmt->execute();
+
+            $stmt = $this->connection->prepare('INSERT INTO user_colors (user_id, color_id)  VALUES (:user_id, :color_id)');
+
             foreach($color_ids as $color_id){
-                # Should check if color id exists
-                $stmt = $this->connection->prepare('INSERT INTO user_colors (user_id, color_id)  VALUES (:user_id, :color_id)');
+                # Should check if color id exists    
                 $stmt->bindValue(':user_id', $user_id, SQLITE3_INTEGER);
                 $stmt->bindValue(':color_id', $color_id, SQLITE3_INTEGER);
                 $stmt->execute();
@@ -105,6 +111,7 @@ class Connection {
         if ($stmt->execute()) {
             $stmt = $this->connection->prepare('DELETE FROM user_colors WHERE user_id = :user_id');
             $stmt->bindValue(':user_id', $user_id, SQLITE3_INTEGER);
+            $stmt->execute();
             return true;
         } else {
             return false;
@@ -112,7 +119,7 @@ class Connection {
     }
 
     // Updates user from table 'users' and their assigned colors in 'user_colors'
-    public function updateUser($user_id,$uname, $email, $color_ids)
+    public function updateUser($user_id, $uname, $email, $color_ids)
     {
         // Update users table
         $stmt = $this->connection->prepare('UPDATE users SET name = :uname, email = :email WHERE id=:user_id');
@@ -127,6 +134,7 @@ class Connection {
             $stmt->bindValue(':user_id', $user_id, SQLITE3_INTEGER);
             $stmt->execute();
             $color_ids = explode(",", trim($color_ids));
+
             foreach($color_ids as $color_id){
                 # Should check if color id exists
                 // Re-assigns new colors

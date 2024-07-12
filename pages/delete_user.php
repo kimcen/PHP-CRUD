@@ -1,5 +1,6 @@
 <?php
-require_once realpath(__DIR__ . '/../connection.php');
+require_once '../config.php';
+require_once '../connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['id'])) {
@@ -9,16 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $result = $con->deleteUser($id);
         if($result){
-            header('Location: ../users.php?message=User deleted successfully');
+            header("Location: {$URL_users}?message=User deleted successfully");
             exit();
         } else {
-            header('Location: ../users.php?message=Unable to delete user');
+            header("Location: {$URL_users}?message=Unable to delete user");
             exit();
         }
     
     } else {
         echo "Invalid request method<br>"; 
-        header('Location: ../users.php?message=Invalid request method');
+        header("Location: {$URL_users}?message=Invalid request method");
         exit();
     }
 }

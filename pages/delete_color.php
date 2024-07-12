@@ -1,4 +1,5 @@
 <?php
+require_once realpath(__DIR__ . '/../config.php');
 require_once realpath(__DIR__ . '/../connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -9,16 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $result = $con->deleteColor($id);
         if($result){
-            header('Location: ../colors.php?message=Color deleted successfully');
+            header("Location: {$URL_colors}?message=Color deleted successfully");
             exit();
         } else {
-            header('Location: ../colors.php?message=Unable to delete color');
+            header("Location: {$URL_colors}?message=Unable to delete color");
             exit();
         }
     
     } else {
         echo "Invalid request method<br>"; 
-        header('Location: ../colors.php?message=Invalid request method');
+        header("Location: {$URL_colors}?message=Invalid request method");
         exit();
     }
 }

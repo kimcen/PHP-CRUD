@@ -27,14 +27,14 @@
                 <?php 
                 // insert database values into table
                     foreach($colors as $color) {
-                        echo sprintf(
-                                '<tr>
-                                    <td class="button">%s</td>
-                                    <td>%s</td>
-                                    <td class="button"><a href="pages/update_color_page.php?id=%s&name=%s" class="btn btn-success">Update</a></td>
-                                    <td class="button"><a href="pages/delete_color.php?id=%s" class="btn btn-danger">Delete</a></td>
-                                </tr>',
-                            $color->id, $color->name, $color->id, $color->name, $color->id); 
+                        $name = $color->name;
+                        $id = $color->id;
+                        echo "<tr>
+                                  <td class='button'>{$id}</td>
+                                  <td>{$name}</td>
+                                  <td class='button'><a href='{$URL_update_color_page}?id={$id}&name={$name}' class='btn btn-success'>Update</a></td>
+                                  <td class='button'><a href='{$URL_delete_color}?id={$id}' class='btn btn-danger'>Delete</a></td>
+                              </tr>"; 
                     }
                     ?>
             </tbody>
@@ -43,7 +43,7 @@
 </div>
 
 <!-- Pop up window -->
-<form action="pages/insert_color.php" method="POST">
+<form action="<?php echo $URL_insert_color?>" method="POST">
     <div class="modal fade" id="add_color" tabindex="-1" role="dialog" aria-labelledby="colorModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

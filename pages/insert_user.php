@@ -1,4 +1,5 @@
 <?php
+require_once realpath(__DIR__ . '/../config.php');
 require_once realpath(__DIR__ . '/../connection.php');
 
 if (isset($_POST['add_user'])) {
@@ -10,12 +11,12 @@ if (isset($_POST['add_user'])) {
     
 }
     if (empty($uname) || empty($email) || empty($color_ids)) {
-        header('location:../users.php?message=You need to fill in every box');
+        header("location:{$URL_users}?message=You need to fill in every box");
         exit();
     }
     else{
         $con->insertUser($uname, $email, $color_ids);
-        header('location:../users.php?insert_msg=User added successfully');
+        header("location:{$URL_users}?insert_msg=User added successfully");
         exit();
     }
 ?>

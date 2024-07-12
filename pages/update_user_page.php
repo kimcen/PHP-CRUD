@@ -1,5 +1,3 @@
-<link rel="stylesheet" type="text/css" href= '../style.css'>
-
 <?php 
 include('../header.php'); 
 
@@ -18,7 +16,7 @@ if (isset($_GET['id'])) {
     }
     $color_ids = implode(",", $color_ids);
 } else { 
-    header('Location: ../users.php?message=Missing ID');
+    header("Location: {$URL_users}?message=Missing ID");
     exit();
 }
 ?>
@@ -27,7 +25,7 @@ if (isset($_GET['id'])) {
     <div class="inside_header">
         <h2 style="padding-bottom: 10px;">Update User <?php echo $name?></h2>
     </div>
-    <form action="update_user.php?id=<?php echo $id; ?>" method="POST">
+    <form action=<?php echo "{$URL_update_user}?id={$id};" ?> method="POST">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" class="form-control" value="<?php echo $name?>">

@@ -1,4 +1,4 @@
-<?php include('header.php'); ?>
+<?php include 'header.php'; ?>
 <link rel="stylesheet" type="text/css" href= 'style.css'>
 <div class="main_content">
     <div class="inside_header">
@@ -29,16 +29,18 @@
                 <?php 
                 // Reads database values into main table
                     foreach($users as $user) {
-                        echo sprintf(
-                                '<tr>
-                                    <td class="button">%s</td>
-                                    <td>%s</td>
-                                    <td>%s</td>
-                                    <td>%s</td>
-                                    <td class="button"><a href="pages/update_user_page.php?id=%s&name=%s&email=%s" class="btn btn-success">Update</a></td>
-                                    <td class="button"><a href="pages/delete_user.php?id=%s" class="btn btn-danger">Delete</a></td>
-                                </tr>',
-                            $user->id, $user->uname, $user->email, $user->color, $user->id, $user->uname, $user->email, $user->id); 
+                        $id = $user->id;
+                        $name = $user->uname;
+                        $email = $user->email;
+                        $colors = $user->color;
+                        echo "<tr>
+                                    <td class='button'>{$id}</td>
+                                    <td>{$name}</td>
+                                    <td>{$email}</td>
+                                    <td>{$colors}</td>
+                                    <td class='button'><a href='{$URL_update_user_page}?id={$id}&name={$name}&email={$email}' class='btn btn-success'>Update</a></td>
+                                    <td class='button'><a href='{$URL_delete_user}?id={$id}' class='btn btn-danger'>Delete</a></td>
+                                </tr>"; 
                     }
                     ?>
             </tbody>
@@ -47,7 +49,7 @@
 </div>
 
 <!-- Pop up window -->
-<form action="pages/insert_user.php" method="POST">
+<form action="<?php echo $URL_insert_user?>" method="POST">
     <div class="modal fade" id="add_user" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
